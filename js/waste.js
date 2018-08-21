@@ -10,11 +10,11 @@ function Waste (myX, myY, myWidth, myHeight) {
 
 
 Waste.prototype.drawMe = function () {
-    
+
     this.y += this.speed;
 
-    if (this.y < -this.height) {
-        this.y = 550;
+    if (this.y > myCanvas.height) {
+        this.y = 0;
     }
 
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);

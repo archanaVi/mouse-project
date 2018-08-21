@@ -32,8 +32,6 @@ var perso = {
     }
   };
 
-// Create the waste
-
 
 // Display the character and waste
 
@@ -42,15 +40,12 @@ function drawScene () {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
     perso.drawMe();
-
-    waste1.drawMe();
-    waste2.drawMe();
-    waste3.drawMe();
     
+    allWaste.forEach(function (onePipe) {
+      onePipe.drawMe();
+    });
 
-    // oneWaste.drawWaste();
 
-    // oneWaste.fall();
 
     // allWaste.forEach(function (onePipe) {
     //   onePipe.drawMe();
@@ -67,37 +62,6 @@ function drawScene () {
 }
 
 drawScene();
-
-// Drop the waste
-
-// function fall() {
-//     for (var i = 0; i < this.nbOfWaste; i++) {
-//         ctx.drawImage (fallingWaste[i].image, fallingWaste[i].x, fallingWaste[i].y);
-
-//         fallingWaste[i].y += fallingWaste[i].speed; // set the falling speed
-
-//         if (fallingWaste[i].y > 550) { //Repeat the raindrop when it falls out of view
-//               fallingWaste[i].y = -25 //Account for the image size
-//               fallingWaste[i].x = Math.random() * 400; //Make it appear randomly along the width
-//         }
-//     }
-// }
-
-
-
-// function drawWaste() {
-
-//     // setInterval(fall, 36);
-
-//     for (var i = 0; i < this.nbOfWaste; i++) {
-
-//         this.x = Math.random() * 400;
-//         this.y = Math.random() * 50;
-//         this.speed = Math.random() * 5;
-
-//         this.fallingWaste.push(this);
-//     }
-// }
 
 
 // Move the character -----------------------------------
