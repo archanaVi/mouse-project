@@ -10,6 +10,7 @@ var perso = {
     y: 503,
     width: 45,
     height: 45,
+    isCrashed: false,
     drawMe: function () {
       ctx.drawImage(persoImg, this.x, this.y, this.width, this.height);
     },
@@ -43,18 +44,12 @@ function drawScene () {
     
     allWaste.forEach(function (onePipe) {
       onePipe.drawMe();
+
+      if (collision(perso, onePipe)) {
+        perso.isCrashed = true;
+        onePipe.isCrashed = true;
+      }
     });
-
-
-
-    // allWaste.forEach(function (onePipe) {
-    //   onePipe.drawMe();
-
-    //   if (collision(perso, onePipe)) {
-    //     perso.isCrashed = true;
-    //     onePipe.isCrashed = true;
-    //   }
-    // });
 
     requestAnimationFrame(function () {
         drawScene();

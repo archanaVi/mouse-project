@@ -5,17 +5,24 @@ function Waste (myX, myY, myWidth, myHeight) {
     this.height = myHeight;
     this.image = new Image();
     this.speed = 2 + (Math.random() * 4);
+    this.globalAlpha = 1;
   }
 
 
 
 Waste.prototype.drawMe = function () {
+    if (!perso.isCrashed) {
+        this.y += this.speed;
 
-    this.y += this.speed;
-
-    if (this.y > myCanvas.height) {
-        this.y = 0;
+        if (this.y > myCanvas.height) {
+            this.y = 0;
+        }
     }
+
+    if (this.isCrashed) {
+        ctx.globalAlpha = this.opacity;
+      }
+
 
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 }
