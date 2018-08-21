@@ -1,7 +1,7 @@
 var myCanvas = document.querySelector(".mouse-canvas");
 var ctx = myCanvas.getContext("2d");
 
-// The character and her image 
+// Create the character and her image
 var persoImg = new Image();
 persoImg.src = "./images/ellipse.png";
 
@@ -14,24 +14,28 @@ var perso = {
       ctx.drawImage(persoImg, this.x, this.y, this.width, this.height);
     },
     controlBoundries: function () {
-        if (this.x < 0) {
-          this.x = 0;
-        }
-    
-        if (this.y < 0) {
-          this.y = 0;
-        }
-    
-        if (this.x > 400 - this.width) {
-          this.x = 400 - this.width;
-        }
-    
-        if (this.y > 550 - this.height) {
-          this.y = 550 - this.height;
-        }
-      }    
+      if (this.x < 0) {
+        this.x = 0;
+      }
+
+      if (this.y < 0) {
+        this.y = 0;
+      }
+
+      if (this.x > 400 - this.width) {
+        this.x = 400 - this.width;
+      }
+
+      if (this.y > 550 - this.height) {
+        this.y = 550 - this.height;
+      }
+    }
   };
 
+// Create the waste
+
+
+// Display the character and waste
 
 function drawScene () {
     // to not repeat the same image at every moves
@@ -39,9 +43,23 @@ function drawScene () {
 
     perso.drawMe();
 
-    drawWaste();
+    waste1.drawMe();
+    waste2.drawMe();
+    waste3.drawMe();
+    
 
-    fall();
+    // oneWaste.drawWaste();
+
+    // oneWaste.fall();
+
+    // allWaste.forEach(function (onePipe) {
+    //   onePipe.drawMe();
+
+    //   if (collision(perso, onePipe)) {
+    //     perso.isCrashed = true;
+    //     onePipe.isCrashed = true;
+    //   }
+    // });
 
     requestAnimationFrame(function () {
         drawScene();
@@ -49,45 +67,37 @@ function drawScene () {
 }
 
 drawScene();
-  
-// The falling waste
 
-var x = 0;
-var y = 0;
-var nbOfWaste = 3;
-var fallingWaste = [];
+// Drop the waste
 
-function fall() {
-    for (var i = 0; i < nbOfWaste; i++) {
-        ctx.drawImage (fallingWaste[i].image, fallingWaste[i].x, fallingWaste[i].y);
+// function fall() {
+//     for (var i = 0; i < this.nbOfWaste; i++) {
+//         ctx.drawImage (fallingWaste[i].image, fallingWaste[i].x, fallingWaste[i].y);
 
-        fallingWaste[i].y += fallingWaste[i].speed; // set the falling speed
+//         fallingWaste[i].y += fallingWaste[i].speed; // set the falling speed
 
-        if (fallingWaste[i].y > 550) { //Repeat the raindrop when it falls out of view
-            fallingWaste[i].y = -25 //Account for the image size
-            fallingWaste[i].x = Math.random() * 400; //Make it appear randomly along the width
-        }
-    }
-}
+//         if (fallingWaste[i].y > 550) { //Repeat the raindrop when it falls out of view
+//               fallingWaste[i].y = -25 //Account for the image size
+//               fallingWaste[i].x = Math.random() * 400; //Make it appear randomly along the width
+//         }
+//     }
+// }
 
-function drawWaste() {
 
-    // setInterval(fall, 36);
 
-    for (var i = 0; i < nbOfWaste; i++) {
-        var oneWaste = new Object();
-        oneWaste["image"] = new Image();
-        oneWaste.image.src = "./images/waste.png";
+// function drawWaste() {
 
-        oneWaste["x"] = Math.random() * 400;
-        oneWaste["y"] = Math.random() * 50;
-        oneWaste["speed"] = Math.random() * 5;
+//     // setInterval(fall, 36);
 
-        fallingWaste.push(oneWaste);
-    }
-}
+//     for (var i = 0; i < this.nbOfWaste; i++) {
 
-// drawWaste();
+//         this.x = Math.random() * 400;
+//         this.y = Math.random() * 50;
+//         this.speed = Math.random() * 5;
+
+//         this.fallingWaste.push(this);
+//     }
+// }
 
 
 // Move the character -----------------------------------
@@ -97,26 +107,42 @@ document.onkeydown = function (event) {
       // exit the function without moving if the character is crashed
       return;
     }
-  
+
     switch (event.keyCode) {
       case 37: // left arrow
         perso.x -= 20;
         break;
-  
+
       case 32: // space bar
       case 38: // up arrow
         // shoot
 
         break;
-  
+
       case 39: // right arrow
         perso.x += 20;
         break;
-  
+
       case 40: // down arrow
         // perso.y += 10;
         break;
     }
-  
+
     perso.controlBoundries();
   };
+
+
+  // Create the collision
+
+  function collision (rectA, rectB) {
+    return rectA.y + rectA.height >= rectB.y
+       &&  rectA.y <= rectB.y + rectB.height
+       &&  rectA.x + rectA.width >= rectB.x
+       &&  rectA.x <= rectB.x + rectB.width;
+  }
+
+
+
+  // var allWaste = ["image", "image", "image", "image"];
+  // var imgWast = allWaste[Math.floor(Math.random()* allWaste.length)];
+
