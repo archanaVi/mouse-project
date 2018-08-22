@@ -59,42 +59,47 @@ var bulletsArr = [];
 // Display the character and waste
 
 function drawScene () {
-    // to not repeat the same image at every moves
-    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+  // to not repeat the same image at every moves
+  ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
-    perso.drawMe();
+  perso.drawMe();
 
-   bulletsArr.forEach(function(oneBullet){
-     oneBullet.y -= 4;
-     oneBullet.drawMe();
-   })
-    
-    // bullet.drawMe();  
-    
+  bulletsArr.forEach(function(oneBullet){
+    oneBullet.y -= 4;
+    oneBullet.drawMe();
+
     allWaste.forEach(function (oneWaste) {
-      oneWaste.drawMe();
-        
-      if (collision(perso, oneWaste)) { 
-        // oneWaste.isCrashed = true;
-        oneWaste.y = -40;      
-        collisionCounter += 1;
+      if (collision(oneBullet, oneWaste)) {
+        oneWaste.y = -30;
+        oneBullet.y = -150;
       }
-
     });
-
-    // if (collision(oneBullet, oneWaste)) {
-    //   oneWaste.y = -40;
-    // }
-
-    if (collisionCounter >= 3) {
-      perso.isCrashed = true;
-      waste1.isCrashed = true;
-      gameOver.drawMe();
+  })
+        
+  allWaste.forEach(function (oneWaste) {
+    oneWaste.drawMe();
+      
+    if (collision(perso, oneWaste)) { 
+      // oneWaste.isCrashed = true;
+      oneWaste.y = -40;      
+      collisionCounter += 1;
     }
+  });
 
-    requestAnimationFrame(function () {
-        drawScene();
-      });
+
+  if (collisionCounter >= 3) {
+    perso.isCrashed = true;
+    waste1.isCrashed = true;
+    // gameOver.drawMe();
+  }
+
+  if (perso.isCrashed) {
+    gameOver.drawMe();
+  }
+
+  requestAnimationFrame(function () {
+      drawScene();
+    });
 }
 
 drawScene();
@@ -147,18 +152,21 @@ document.onkeydown = function (event) {
 
 
   var gameOver = {
-    x: 311,
-    y: 325,
+    x: 10,
+    y: 250,
     opacity: 0,
     drawMe: function () {
       if (this.opacity < 1) {
-        this.opacity += 0.01;
+        this.opacity += 0.5;
       }
   
       // fade in the text with globalAlpha
       ctx.globalAlpha = this.opacity;
       ctx.font = "bold 70px monospace";
   
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 100, 400, 300);
+
       ctx.fillStyle = "red";
       ctx.fillText("Game Over", this.x, this.y);
   

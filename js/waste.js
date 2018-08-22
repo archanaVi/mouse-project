@@ -12,8 +12,8 @@ function Waste (myX, myY, myWidth, myHeight) {
 
 Waste.prototype.drawMe = function () {
     if (!perso.isCrashed) {
+
         this.y += this.speed;
-        
 
         if (this.y > myCanvas.height) {
             this.y = -40;
