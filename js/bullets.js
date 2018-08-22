@@ -8,10 +8,10 @@ function Bullet (myX, myY, myWidth, myHeight) {
   };
 
 Bullet.prototype.drawMe = function () {
-    if (!perso.isCrashed) {
-
+    
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
 
-    }
 }
+
+var bulletsArr = [];

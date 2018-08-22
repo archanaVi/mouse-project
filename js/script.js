@@ -64,26 +64,25 @@ function drawScene () {
 
   perso.drawMe();
 
-  bulletsArr.forEach(function(oneBullet){
-    oneBullet.y -= 4;
-    oneBullet.drawMe();
+  allWaste.forEach(function (oneWaste){
+    oneWaste.drawMe();
 
-    allWaste.forEach(function (oneWaste) {
+    bulletsArr.forEach(function (oneBullet) {
+      oneBullet.y -= 4;
+      oneBullet.drawMe();
+
       if (collision(oneBullet, oneWaste)) {
         oneWaste.y = -30;
         oneBullet.y = -150;
-      }
+        }
     });
-  })
-        
-  allWaste.forEach(function (oneWaste) {
-    oneWaste.drawMe();
-      
+
     if (collision(perso, oneWaste)) { 
-      // oneWaste.isCrashed = true;
-      oneWaste.y = -40;      
-      collisionCounter += 1;
-    }
+        // oneWaste.isCrashed = true;
+        oneWaste.y = -40;      
+        collisionCounter += 1;
+      }
+
   });
 
 
