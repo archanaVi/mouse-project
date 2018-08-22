@@ -42,14 +42,22 @@ function drawScene () {
 
     perso.drawMe();
     
-    allWaste.forEach(function (onePipe) {
-      onePipe.drawMe();
-
-      if (collision(perso, onePipe)) {
-        perso.isCrashed = true;
-        onePipe.isCrashed = true;
+    allWaste.forEach(function (oneWaste) {
+      oneWaste.drawMe();
+        
+      if (collision(perso, oneWaste)) { 
+        // oneWaste.isCrashed = true;
+        oneWaste.y = -40;      
+        collisionCounter += 1;
       }
+
     });
+
+    if (collisionCounter >= 3) {
+      perso.isCrashed = true;
+      waste1.isCrashed = true;
+      gameOver.drawMe();
+    }
 
     requestAnimationFrame(function () {
         drawScene();
@@ -75,7 +83,6 @@ document.onkeydown = function (event) {
       case 32: // space bar
       case 38: // up arrow
         // shoot
-
         break;
 
       case 39: // right arrow
@@ -93,13 +100,40 @@ document.onkeydown = function (event) {
 
   // Create the collision
 
+  var collisionCounter = 0;
+
   function collision (rectA, rectB) {
+
     return rectA.y + rectA.height >= rectB.y
        &&  rectA.y <= rectB.y + rectB.height
        &&  rectA.x + rectA.width >= rectB.x
        &&  rectA.x <= rectB.x + rectB.width;
   }
 
+
+  var gameOver = {
+    x: 311,
+    y: 325,
+    opacity: 0,
+    drawMe: function () {
+      if (this.opacity < 1) {
+        this.opacity += 0.01;
+      }
+  
+      // fade in the text with globalAlpha
+      ctx.globalAlpha = this.opacity;
+      ctx.font = "bold 70px monospace";
+  
+      ctx.fillStyle = "red";
+      ctx.fillText("Game Over", this.x, this.y);
+  
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "rebeccapurple";
+      ctx.strokeText("Game Over", this.x, this.y);
+  
+      ctx.globalAlpha = 1;
+    }
+  }
 
 
   // var allWaste = ["image", "image", "image", "image"];
