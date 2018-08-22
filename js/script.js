@@ -1,16 +1,39 @@
 var myCanvas = document.querySelector(".mouse-canvas");
 var ctx = myCanvas.getContext("2d");
 
-// create  "score"
+// create score
 
 var score = 0;
 
 function totalScore () {
     ctx.font = "bold 16px monospace";
-    ctx.fillStyle = "green";
-    ctx.fillText("SCORE ", 10, 20);
-    ctx.fillText(score, 60, 20);
+    ctx.fillStyle = "#73B966";
+    ctx.fillText("SCORE ", 10, 25);
+    ctx.fillText(score, 60, 25);
 } 
+
+// create lives
+
+var lifeImg = new Image();
+lifeImg.src = "./images/heart.png";
+
+function Life (image, x) {
+  this.x = x;
+  this.y = 10;
+  this.width = 17;
+  this.height = 16;
+  this.image = image;
+}
+
+Life.prototype.drawMe = function () {
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+}
+
+var lifeImage = new Life(lifeImg, 330);
+var lifeImage2 = new Life(lifeImg, 350);
+var lifeImage3 = new Life(lifeImg, 370);
+
+var allLives = [lifeImage, lifeImage2, lifeImage3];
 
 // Create the character and charge image
 var persoImg = new Image();
@@ -51,9 +74,15 @@ function drawScene () {
   // to not repeat the same image at every moves
   ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
-  perso.drawMe();
-
   totalScore();
+
+  // life.drawMe();
+
+  allLives.forEach(function(onLife){
+    onLife.drawMe();
+  })
+
+  perso.drawMe();
 
   allWaste.forEach(function (oneWaste){
     oneWaste.drawMe();
@@ -74,6 +103,7 @@ function drawScene () {
         // oneWaste.isCrashed = true;
         oneWaste.y = -40;     
         collisionCounter += 1;
+        allLives.splice(allLives.length-1, 1);
       }
 
   });
