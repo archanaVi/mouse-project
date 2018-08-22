@@ -1,7 +1,18 @@
 var myCanvas = document.querySelector(".mouse-canvas");
 var ctx = myCanvas.getContext("2d");
 
-// Create the character and her image
+// create  "score"
+
+var score = 0;
+
+function totalScore () {
+    ctx.font = "bold 16px monospace";
+    ctx.fillStyle = "green";
+    ctx.fillText("SCORE ", 10, 20);
+    ctx.fillText(score, 60, 20);
+} 
+
+// Create the character and charge image
 var persoImg = new Image();
 persoImg.src = "./images/ellipse.png";
 
@@ -33,30 +44,8 @@ var perso = {
     }
   };
 
-  function Bullet (myX, myY, myWidth, myHeight) {
-    this.x = perso.x;
-    this.y = perso.y;
-    this.width = 5;
-    this.height = 15;
-    this.color = "#fff";
-    this.isCrashed = false;
-  };
 
-Bullet.prototype.drawMe = function () {
-    // if (!perso.isCrashed) {
-
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-
-    // }
-}
-
-
-var bulletsArr = [];
-
-
-
-// Display the character and waste
+// Display the character, waste and bullets
 
 function drawScene () {
   // to not repeat the same image at every moves
@@ -64,32 +53,34 @@ function drawScene () {
 
   perso.drawMe();
 
+  totalScore();
+
   allWaste.forEach(function (oneWaste){
     oneWaste.drawMe();
 
     bulletsArr.forEach(function (oneBullet) {
-      oneBullet.y -= 4;
+      oneBullet.y -= 2;
       oneBullet.drawMe();
 
       if (collision(oneBullet, oneWaste)) {
-        oneWaste.y = -30;
+        oneWaste.y = -40;
+        oneWaste.x = Math.random() * 360; 
         oneBullet.y = -150;
+        score += 10;
         }
     });
 
     if (collision(perso, oneWaste)) { 
         // oneWaste.isCrashed = true;
-        oneWaste.y = -40;      
+        oneWaste.y = -40;     
         collisionCounter += 1;
       }
 
   });
 
-
   if (collisionCounter >= 3) {
     perso.isCrashed = true;
     waste1.isCrashed = true;
-    // gameOver.drawMe();
   }
 
   if (perso.isCrashed) {
@@ -180,4 +171,6 @@ document.onkeydown = function (event) {
 
   // var allWaste = ["image", "image", "image", "image"];
   // var imgWast = allWaste[Math.floor(Math.random()* allWaste.length)];
+
+
 
