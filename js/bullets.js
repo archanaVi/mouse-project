@@ -7,29 +7,11 @@ function Bullet (myX, myY, myWidth, myHeight) {
     this.isCrashed = false;
   };
 
+Bullet.prototype.drawMe = function () {
+    if (!perso.isCrashed) {
 
-  drawMe = function () {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  },
-  controlBoundries = function () {
-      return this.x >= 0 && this.x <= 400 && this.y >= 0 && this.y <= 550;
-  }
-  update = function () {
-      this.x += this.xVelocity;
-      this.y += this.yVelocity;
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
 
-      this.isActive = this.isActive && this.controlBoundries();
-  }
-
-
-  function Waste (myX, myY, myWidth, myHeight) {
-    this.x = myX;
-    this.y = myY;
-    this.width = myWidth;
-    this.height = myHeight;
-    this.image = new Image();
-    this.speed = 2 + (Math.random() * 4);
-    this.opacity = 0;
-    this.isCrashed = false;
-  }
+    }
+}
