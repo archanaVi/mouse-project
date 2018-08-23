@@ -5,15 +5,26 @@ $(".start-btn").click(function () {
   $(".start-btn").addClass("hide");
   $(".mouse-canvas").removeClass("hide");
   launchGame();
+  // window.location.href = "index.html"
 });
 
-// $(".replay-btn").click(function () {
-//   console.log('hello');
-//   $(".game-over").addClass("hide");
-//   $(".replay-btn").addClass("hide");
-//   $(".mouse-canvas").removeClass("hide");
-//   launchGame();
-// });
+$(".replay-btn").click(function () {
+  console.log('hello');
+  $(".game-over").addClass("hide");
+  $(".replay-btn").addClass("hide");
+  $(".mouse-canvas").removeClass("hide");
+  // launchGame();
+  window.location.href = "index.html"
+});
+
+$(".win-btn").click(function () {
+  console.log('hello');
+  $(".game-over").addClass("hide");
+  $(".win-btn").addClass("hide");
+  $(".mouse-canvas").removeClass("hide");
+  // launchGame();
+  window.location.href = "index.html"
+});
 
 // canvas
 

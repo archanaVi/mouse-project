@@ -44,16 +44,22 @@ Waste.prototype.drawMe = function () {
 // var randomImage = imagesArray[ Math.floor( Math.random * imagesArray.length - 1 )];
 
 
-var waste1 = new Waste(0, 0, 40, 40, true);
-waste1.image.src = "./images/waste-1.png";
+var waste1 = new Waste(0, 0, 71, 38, true);
+waste1.image.src = "./images/banana.svg";
 
-var waste2 = new Waste(200, 0, 40, 40, true);
-waste2.image.src = "./images/waste-2.png";
+var waste2 = new Waste(200, 0, 51, 51, true);
+waste2.image.src = "./images/fish-bones.svg";
 
-var waste3 = new Waste(350, 0, 40, 40, false);
-waste3.image.src = "./images/waste-3.png";
+var waste3 = new Waste(200, 0, 56, 56, true);
+waste3.image.src = "./images/coffee.svg";
 
-var allWaste = [waste1, waste2, waste3];
+var waste4 = new Waste(200, 0, 54, 47, true);
+waste4.image.src = "./images/can.svg";
+
+var waste5 = new Waste(350, 0, 64, 58, false);
+waste5.image.src = "./images/dollar.svg";
+
+var allWaste = [waste1, waste2, waste3, waste4, waste5];
 
 
 

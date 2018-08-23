@@ -46,7 +46,7 @@ p {
     text-align: center;
 }
 
-.starter-text img {
+.starter-text img, .win img {
     margin-top: 20px;
 }
 
@@ -58,7 +58,7 @@ p {
     height: 45px;
     line-height: 55px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 55px;
     background-color: #E74148;
     border: none;
 }
