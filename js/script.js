@@ -13,16 +13,16 @@ $(".replay-btn").click(function () {
   $(".game-over").addClass("hide");
   $(".replay-btn").addClass("hide");
   $(".mouse-canvas").removeClass("hide");
-  // launchGame();
+
   window.location.href = "index.html"
 });
 
 $(".win-btn").click(function () {
   console.log('hello');
-  $(".game-over").addClass("hide");
-  $(".win-btn").addClass("hide");
+  $(".win").addClass("hide");
+  $(".replay-btn").addClass("hide");
   $(".mouse-canvas").removeClass("hide");
-  // launchGame();
+
   window.location.href = "index.html"
 });
 
@@ -45,7 +45,7 @@ function totalScore () {
 // create lives
 
 var lifeImg = new Image();
-lifeImg.src = "./images/heart.png";
+lifeImg.src = "./images/heart.svg";
 
 function Life (image, x) {
   this.x = x;
@@ -108,7 +108,7 @@ function launchGame() {
     
     totalScore();
     
-    if (score === 100) {
+    if (score === 500) {
   
       $(".mouse-canvas").addClass("hide");
       $(".win").removeClass("hide");
@@ -131,12 +131,18 @@ function launchGame() {
       oneBullet.y -= 2;
       oneBullet.drawMe();
 
-      if (collision(oneBullet, oneWaste)) {
+      if (collision(oneBullet, oneWaste) && oneWaste.isWaste) {
         oneWaste.y = -40;
         oneWaste.x = Math.random() * 360; 
         oneBullet.y = -150;
         score += 10;
         }
+      else if (collision(oneBullet, oneWaste) && !oneWaste.isWaste) {
+        oneWaste.y = -1000;
+        oneWaste.x = Math.random() * 360; 
+        oneBullet.y = -150;
+        score += 50;
+      } 
     });
 
     if (collision(perso, oneWaste)) { 

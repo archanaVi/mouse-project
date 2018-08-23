@@ -1,4 +1,4 @@
-function Waste (myX, myY, myWidth, myHeight, boolean) {
+function Waste (myX, myY, myWidth, myHeight, myWaste) {
     this.x = myX;
     this.y = myY;
     this.width = myWidth;
@@ -7,12 +7,12 @@ function Waste (myX, myY, myWidth, myHeight, boolean) {
     this.speed = 2 + (Math.random() * 4);
     this.opacity = 0;
     this.isCrashed = false;
-    this.isWaste = true;
+    this.isWaste = myWaste;
   }
 
 
 Waste.prototype.drawMe = function () {
-    if (!perso.isCrashed && this.isWaste) {
+    if (!perso.isCrashed) {
 
         this.y += this.speed;
 
@@ -22,15 +22,15 @@ Waste.prototype.drawMe = function () {
         }
     }
 
-    if (!this.isWaste) {
+    // if (!this.isWaste) {
 
-        this.y += this.speed;
+    //     this.y += this.speed;
 
-        if (this.y > myCanvas.height) {
-            this.y = -500;
-            this.x = Math.random() * 360;
-        }
-    }
+    //     if (this.y > myCanvas.height) {
+    //         this.y = -500;
+    //         this.x = Math.random() * 360;
+    //     }
+    // }
 
     if (this.isCrashed) {
         ctx.globalAlpha = this.opacity;
@@ -47,16 +47,16 @@ Waste.prototype.drawMe = function () {
 var waste1 = new Waste(0, 0, 71, 38, true);
 waste1.image.src = "./images/banana.svg";
 
-var waste2 = new Waste(200, 0, 51, 51, true);
+var waste2 = new Waste(100, 0, 51, 51, true);
 waste2.image.src = "./images/fish-bones.svg";
 
 var waste3 = new Waste(200, 0, 56, 56, true);
 waste3.image.src = "./images/coffee.svg";
 
-var waste4 = new Waste(200, 0, 54, 47, true);
+var waste4 = new Waste(300, 0, 54, 47, true);
 waste4.image.src = "./images/can.svg";
 
-var waste5 = new Waste(350, 0, 64, 58, false);
+var waste5 = new Waste(350, -500, 64, 58, false);
 waste5.image.src = "./images/dollar.svg";
 
 var allWaste = [waste1, waste2, waste3, waste4, waste5];
