@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Gill Sans MT Pro UltraBold Cond';
+    src: url('../font/GillSansMTPro-UltraBoldCond.woff2') format('woff2'),
+        url('../font/GillSansMTPro-UltraBoldCond.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
 body {
     background-color: #272351;
     color: #fff;
@@ -5,11 +13,11 @@ body {
 
 h1 {
     text-align: center;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Gill Sans MT Pro UltraBold Cond';
     font-size: 55px;
-    font-weight: 900;
     color: #73B966;
     text-shadow: 3px -2px #E74148;
+    letter-spacing: 2px;
 }
 
 section {
@@ -17,9 +25,11 @@ section {
     flex-direction: column;
 }
 
-.starter-text {
+.starter-text, .game-over, .win {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
     width: 510px;
     height: 360px;
     margin: auto;
@@ -30,13 +40,23 @@ section {
 p {
     font-family: 'Courier New', Courier, monospace;
     color: #352459;
-    padding: 0 40px;
+    padding: 6px 35px;
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
 }
 
-.start-btn {
+.starter-text img {
+    margin-top: 20px;
+}
+
+.start-btn, .replay-btn, .win-btn {
     color: white;
+    font-family: 'Gill Sans MT Pro UltraBold Cond';
+    font-size: 30px;
     width: 200px;
-    height: 40px;
+    height: 45px;
+    line-height: 55px;
     margin: auto;
     margin-top: 30px;
     background-color: #E74148;

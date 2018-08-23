@@ -7,6 +7,14 @@ $(".start-btn").click(function () {
   launchGame();
 });
 
+// $(".replay-btn").click(function () {
+//   console.log('hello');
+//   $(".game-over").addClass("hide");
+//   $(".replay-btn").addClass("hide");
+//   $(".mouse-canvas").removeClass("hide");
+//   launchGame();
+// });
+
 // canvas
 
 var myCanvas = document.querySelector(".mouse-canvas");
@@ -82,13 +90,21 @@ var perso = {
 // Display the character, waste and bullets
 
 function launchGame() {
+  
+  function drawScene () {
+    // to not repeat the same image at every moves
+    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    
+    totalScore();
+    
+    if (score === 100) {
+  
+      $(".mouse-canvas").addClass("hide");
+      $(".win").removeClass("hide");
+      $(".win-btn").removeClass("hide");
 
-function drawScene () {
-  // to not repeat the same image at every moves
-  ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-
-  totalScore();
-
+      return;
+    }
   // life.drawMe();
 
   allLives.forEach(function(onLife){
@@ -127,8 +143,13 @@ function drawScene () {
   }
 
   if (perso.isCrashed) {
-    gameOver.drawMe();
+    // gameOver.drawMe();
+    $(".mouse-canvas").addClass("hide");
+    $(".game-over").removeClass("hide");
+    $(".replay-btn").removeClass("hide");
+
   }
+
 
   requestAnimationFrame(function () {
       drawScene();
@@ -184,33 +205,32 @@ document.onkeydown = function (event) {
   }
 
 
-  var gameOver = {
-    x: 10,
-    y: 250,
-    opacity: 0,
-    drawMe: function () {
-      if (this.opacity < 1) {
-        this.opacity += 0.5;
-      }
+  // var gameOver = {
+  //   x: 10,
+  //   y: 250,
+  //   opacity: 0,
+  //   drawMe: function () {
+  //     if (this.opacity < 1) {
+  //       this.opacity += 0.5;
+  //     }
   
-      // fade in the text with globalAlpha
-      ctx.globalAlpha = this.opacity;
-      ctx.font = "bold 70px monospace";
+  //     // fade in the text with globalAlpha
+  //     ctx.globalAlpha = this.opacity;
+  //     ctx.font = "bold 70px monospace";
   
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 100, 400, 300);
+  //     ctx.fillStyle = "white";
+  //     ctx.fillRect(0, 100, 400, 300);
 
-      ctx.fillStyle = "red";
-      ctx.fillText("Game Over", this.x, this.y);
+  //     ctx.fillStyle = "red";
+  //     ctx.fillText("Game Over", this.x, this.y);
   
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = "rebeccapurple";
-      ctx.strokeText("Game Over", this.x, this.y);
+  //     ctx.lineWidth = 3;
+  //     ctx.strokeStyle = "rebeccapurple";
+  //     ctx.strokeText("Game Over", this.x, this.y);
   
-      ctx.globalAlpha = 1;
-    }
-  }
-
+  //     ctx.globalAlpha = 1;
+  //   }
+  // }
 
   // var allWaste = ["image", "image", "image", "image"];
   // var imgWast = allWaste[Math.floor(Math.random()* allWaste.length)];

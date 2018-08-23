@@ -12,7 +12,7 @@ function Waste (myX, myY, myWidth, myHeight, boolean) {
 
 
 Waste.prototype.drawMe = function () {
-    if (!perso.isCrashed && this.isWaste === true) {
+    if (!perso.isCrashed && this.isWaste) {
 
         this.y += this.speed;
 
@@ -22,7 +22,7 @@ Waste.prototype.drawMe = function () {
         }
     }
 
-    if (this.isWaste === false) {
+    if (!this.isWaste) {
 
         this.y += this.speed;
 
