@@ -1,4 +1,4 @@
-function Waste (myX, myY, myWidth, myHeight) {
+function Waste (myX, myY, myWidth, myHeight, boolean) {
     this.x = myX;
     this.y = myY;
     this.width = myWidth;
@@ -7,16 +7,27 @@ function Waste (myX, myY, myWidth, myHeight) {
     this.speed = 2 + (Math.random() * 4);
     this.opacity = 0;
     this.isCrashed = false;
+    this.isWaste = true;
   }
 
 
 Waste.prototype.drawMe = function () {
-    if (!perso.isCrashed) {
+    if (!perso.isCrashed && this.isWaste === true) {
 
         this.y += this.speed;
 
         if (this.y > myCanvas.height) {
             this.y = -40;
+            this.x = Math.random() * 360;
+        }
+    }
+
+    if (this.isWaste === false) {
+
+        this.y += this.speed;
+
+        if (this.y > myCanvas.height) {
+            this.y = -500;
             this.x = Math.random() * 360;
         }
     }
@@ -33,13 +44,13 @@ Waste.prototype.drawMe = function () {
 // var randomImage = imagesArray[ Math.floor( Math.random * imagesArray.length - 1 )];
 
 
-var waste1 = new Waste(0, 0, 40, 40);
+var waste1 = new Waste(0, 0, 40, 40, true);
 waste1.image.src = "./images/waste-1.png";
 
-var waste2 = new Waste(200, 0, 40, 40);
+var waste2 = new Waste(200, 0, 40, 40, true);
 waste2.image.src = "./images/waste-2.png";
 
-var waste3 = new Waste(350, 0, 40, 40);
+var waste3 = new Waste(350, 0, 40, 40, false);
 waste3.image.src = "./images/waste-3.png";
 
 var allWaste = [waste1, waste2, waste3];

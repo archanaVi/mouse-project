@@ -6,14 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Catch the mouse</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <section>
         <h1>Catch the mouse</h1>
-        <canvas class="mouse-canvas" width="400" height="550"></canvas>
+
+        <div class="starter-text">
+            <p>Sed (saepe enim redeo ad Scipionem, cuius omnis sermo erat de amicitia) querebatur, quod omnibus in rebus homines diligentiores essent; capras et oves quot quisque haberet, dicere posse, amicos quot haberet, non posse dicere et in illis quidem parandis adhibere curam, in amicis eligendis neglegentis esse nec habere quasi signa quaedam et notas, quibus eos qui ad amicitias essent idonei, iudicarent.</p>
+        </div>
+
+        <button class="start-btn">START</button>
+
+        <canvas class="mouse-canvas hide" width="400" height="550"></canvas>
     </section>
 
+    <script src="./js/jquery-2.1.4.js"></script>
     <script src="./js/waste.js"></script>
     <script src="./js/bullets.js"></script>
     <script src="./js/script.js"></script>

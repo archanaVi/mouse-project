@@ -1,3 +1,14 @@
+// Start page, disapears on click
+
+$(".start-btn").click(function () {
+  $(".starter-text").addClass("hide");
+  $(".start-btn").addClass("hide");
+  $(".mouse-canvas").removeClass("hide");
+  launchGame();
+});
+
+// canvas
+
 var myCanvas = document.querySelector(".mouse-canvas");
 var ctx = myCanvas.getContext("2d");
 
@@ -69,6 +80,8 @@ var perso = {
 
 
 // Display the character, waste and bullets
+
+function launchGame() {
 
 function drawScene () {
   // to not repeat the same image at every moves
@@ -203,4 +216,4 @@ document.onkeydown = function (event) {
   // var imgWast = allWaste[Math.floor(Math.random()* allWaste.length)];
 
 
-
+}
