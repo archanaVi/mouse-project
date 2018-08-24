@@ -20,6 +20,12 @@ h1 {
     letter-spacing: 2px;
 }
 
+h3 {
+    font-family: 'Gill Sans MT Pro UltraBold Cond';
+    color: #E74148;
+    margin-bottom: 5px;
+}
+
 section {
     display: flex;
     flex-direction: column;
@@ -46,7 +52,7 @@ p {
     text-align: center;
 }
 
-.starter-text img, .win img {
+.starter-text img, .win img, .game-over img {
     margin-top: 20px;
 }
 
@@ -71,3 +77,73 @@ canvas {
 .hide {
     display: none;
 }
+
+.shake-horizontal {
+	-webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+	        animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+
+/*
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+ @-webkit-keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-5px);
+              transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(5px);
+              transform: translateX(5px);
+    }
+    80% {
+      -webkit-transform: translateX(4px);
+              transform: translateX(4px);
+    }
+    90% {
+      -webkit-transform: translateX(-4px);
+              transform: translateX(-4px);
+    }
+  }
+  @keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-5px);
+              transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(5px);
+              transform: translateX(5px);
+    }
+    80% {
+      -webkit-transform: translateX(4px);
+              transform: translateX(4px);
+    }
+    90% {
+      -webkit-transform: translateX(-4px);
+              transform: translateX(-4px);
+    }
+  }
+
+  

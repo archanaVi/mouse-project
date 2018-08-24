@@ -74,13 +74,13 @@ var allLives = [lifeImage, lifeImage2, lifeImage3];
 
 // Create the character and charge image
 var persoImg = new Image();
-persoImg.src = "./images/ellipse.png";
+persoImg.src = "./images/me.svg";
 
 var perso = {
     x: 180,
-    y: 503,
-    width: 45,
-    height: 45,
+    y: 480,
+    width: 60,
+    height: 70,
     isCrashed: false,
     drawMe: function () {
       ctx.drawImage(persoImg, this.x, this.y, this.width, this.height);
@@ -158,6 +158,10 @@ function launchGame() {
         oneWaste.y = -40;     
         collisionCounter += 1;
         allLives.splice(allLives.length-1, 1);
+        $(".mouse-canvas").addClass("shake-horizontal");
+        var timer = setTimeout(function(){
+          $(".mouse-canvas").removeClass("shake-horizontal");
+        },1000);
       }
 
   });
