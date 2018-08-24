@@ -31,6 +31,13 @@ $(".win-btn").click(function () {
 var myCanvas = document.querySelector(".mouse-canvas");
 var ctx = myCanvas.getContext("2d");
 
+
+// sound
+
+var rainbows = new Audio("./sounds/rainbows.mp3");
+var youLouse = new Audio("./sounds/you-lose.mp3");
+var shoot = new Audio("./sounds/shoot.wav");
+
 // create score
 
 var score = 0;
@@ -108,11 +115,12 @@ function launchGame() {
     
     totalScore();
     
-    if (score === 500) {
+    if (score === 300) {
   
       $(".mouse-canvas").addClass("hide");
       $(".win").removeClass("hide");
       $(".win-btn").removeClass("hide");
+      rainbows.play();
 
       return;
     }
@@ -157,6 +165,7 @@ function launchGame() {
   if (collisionCounter >= 3) {
     perso.isCrashed = true;
     waste1.isCrashed = true;
+    youLouse.play();
   }
 
   if (perso.isCrashed) {
@@ -194,6 +203,7 @@ document.onkeydown = function (event) {
         // shoot
         var bullet = new Bullet();
         bulletsArr.push(bullet);
+        shoot.play();
         break;
 
       case 39: // right arrow
